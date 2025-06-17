@@ -1,0 +1,1 @@
+class PlaylistManager { constructor() { this.playlist = []; } addSong(song) { this.playlist.push(song); } deleteSong(index) { if (index >= 0 && index < this.playlist.length) { this.playlist.splice(index, 1); } } getPlaylist() { return this.playlist; } clearPlaylist() { this.playlist = []; } }
