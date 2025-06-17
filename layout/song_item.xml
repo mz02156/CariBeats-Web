@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="#1B1B1B">
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Song Title"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/artistTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Artist Name"
+        android:textSize="14sp"
+        android:textColor="#BBBBBB" />
+
+    <TextView
+        android:id="@+id/tempoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tempo: 120 BPM"
+        android:textSize="12sp"
+        android:textColor="#AAAAAA" />
+
+    <TextView
+        android:id="@+id/moodTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mood: Chill"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        android:textColor="#FFEB3B" />
+</LinearLayout>
+
