@@ -1,0 +1,1 @@
+class Song { constructor(title, artists, genre, tempo, mood = "Unknown") { this.title = title; this.artists = artists; this.genre = genre; this.tempo = tempo; this.mood = mood; } }

@@ -1,0 +1,1 @@
+class BPMClusterHelper { static getMoodForTempo(tempo) { if (tempo < 80) return "Chill"; if (tempo < 120) return "Moderate"; return "Hype"; } static filterSongsByTempo(songs, targetTempo, range = 10) { return songs.filter(song => Math.abs(song.tempo - targetTempo) <= range); } }
