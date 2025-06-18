@@ -27,12 +27,74 @@
     <input type="text" id="searchBar" placeholder="Search songs..." style="width:100%; padding:12px; margin-bottom:12px; background-color:#545353; color:white;" />
 
     <!-- Toggle Filters Button -->
-    <button class="button" onclick="toggleFilters()">Toggle Filters</button>
+    <button class="button" onclick="toggleFilters()">Toggle Advanced Filters</button>
 
-    <!-- Tempo Filter Panel -->
+    <!-- Full Advanced Filter Panel -->
     <div id="filterPanel" style="display:none; margin-top:12px;">
-        <label>Min Tempo: <input type="number" id="minTempo" value="0" style="width:80px;"></label>
-        <label>Max Tempo: <input type="number" id="maxTempo" value="999" style="width:80px;"></label>
+
+        <label>Popularity: Min <input type="number" id="minPopularity" value="0" style="width:80px;">
+        Max <input type="number" id="maxPopularity" value="100" style="width:80px;"></label><br>
+
+        <label>Duration (ms): Min <input type="number" id="minDuration" value="0" style="width:80px;">
+        Max <input type="number" id="maxDuration" value="500000" style="width:80px;"></label><br>
+
+        <label>Explicit:
+            <select id="explicitFilter">
+                <option value="all">All</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </label><br>
+
+        <label>Danceability: Min <input type="number" step="0.01" id="minDanceability" value="0" style="width:80px;">
+        Max <input type="number" step="0.01" id="maxDanceability" value="1" style="width:80px;"></label><br>
+
+        <label>Energy: Min <input type="number" step="0.01" id="minEnergy" value="0" style="width:80px;">
+        Max <input type="number" step="0.01" id="maxEnergy" value="1" style="width:80px;"></label><br>
+
+        <label>Key: <input type="number" id="keyFilter" value="-1" style="width:80px;"> (0-11, -1=Any)</label><br>
+
+        <label>Loudness: Min <input type="number" id="minLoudness" value="-60" style="width:80px;">
+        Max <input type="number" id="maxLoudness" value="0" style="width:80px;"></label><br>
+
+        <label>Mode:
+            <select id="modeFilter">
+                <option value="all">All</option>
+                <option value="1">Major</option>
+                <option value="0">Minor</option>
+            </select>
+        </label><br>
+
+        <label>Speechiness: Min <input type="number" step="0.01" id="minSpeechiness" value="0" style="width:80px;">
+        Max <input type="number" step="0.01" id="maxSpeechiness" value="1" style="width:80px;"></label><br>
+
+        <label>Acousticness: Min <input type="number" step="0.01" id="minAcousticness" value="0" style="width:80px;">
+        Max <input type="number" step="0.01" id="maxAcousticness" value="1" style="width:80px;"></label><br>
+
+        <label>Instrumentalness: Min <input type="number" step="0.01" id="minInstrumentalness" value="0" style="width:80px;">
+        Max <input type="number" step="0.01" id="maxInstrumentalness" value="1" style="width:80px;"></label><br>
+
+        <label>Liveness: Min <input type="number" step="0.01" id="minLiveness" value="0" style="width:80px;">
+        Max <input type="number" step="0.01" id="maxLiveness" value="1" style="width:80px;"></label><br>
+
+        <label>Valence: Min <input type="number" step="0.01" id="minValence" value="0" style="width:80px;">
+        Max <input type="number" step="0.01" id="maxValence" value="1" style="width:80px;"></label><br>
+
+        <label>Tempo: Min <input type="number" id="minTempo" value="0" style="width:80px;">
+        Max <input type="number" id="maxTempo" value="999" style="width:80px;"></label><br>
+
+        <label>Time Signature:
+            <select id="timeSignatureFilter">
+                <option value="-1">Any</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+            </select>
+        </label><br>
+
+        <!-- Apply Filters Button -->
         <button class="button" id="applyFiltersButton">Apply Filters</button>
     </div>
 
@@ -60,4 +122,5 @@
     <script src="main.js"></script>
 </body>
 </html>
+
 
