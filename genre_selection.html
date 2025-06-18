@@ -105,21 +105,26 @@
     <h3 style="color:#FFEB3B; margin-top:16px;">Song List</h3>
     <div id="songList"></div>
 
-    <!-- Bottom Nav -->
-    <div class="bottom-nav">
-        <a href="index.html">Home</a>
-        <a href="playlist.html">Playlist</a>
-        <a href="settings.html">Settings</a>
-    </div>
+   <!-- Bottom Nav -->
+<div class="bottom-nav">
+    <a href="index.html">Home</a>
+    <a href="playlist.html">Playlist</a>
+    <a href="settings.html">Settings</a>
+</div>
 
-    <script>
-        function toggleFilters() {
-            const panel = document.getElementById("filterPanel");
-            panel.style.display = (panel.style.display === "none") ? "block" : "none";
-        }
-    </script>
+<!-- Toggle filter panel script -->
+<script>
+    function toggleFilters() {
+        const panel = document.getElementById("filterPanel");
+        panel.style.display = (panel.style.display === "none") ? "block" : "none";
+    }
+</script>
 
-    <script src="main.js"></script>
+<!-- Load song data and main -->
+<script src="song.js"></script>
+<script src="DatasetLoader.js"></script>
+<script src="main.js"></script>
+
 </body>
 </html>
 
