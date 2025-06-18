@@ -26,12 +26,15 @@
     <!-- Search Bar -->
     <input type="text" id="searchBar" placeholder="Search songs..." style="width:100%; padding:12px; margin-bottom:12px; background-color:#545353; color:white;" />
 
-    <!-- Tempo Filters -->
-    <label>Min Tempo: <input type="number" id="minTempo" value="0" style="width:80px;"></label>
-    <label>Max Tempo: <input type="number" id="maxTempo" value="999" style="width:80px;"></label>
+    <!-- Toggle Filters Button -->
+    <button class="button" onclick="toggleFilters()">Toggle Filters</button>
 
-    <!-- Apply Filters Button -->
-    <button class="button" id="applyFiltersButton">Apply Filters</button>
+    <!-- Tempo Filter Panel -->
+    <div id="filterPanel" style="display:none; margin-top:12px;">
+        <label>Min Tempo: <input type="number" id="minTempo" value="0" style="width:80px;"></label>
+        <label>Max Tempo: <input type="number" id="maxTempo" value="999" style="width:80px;"></label>
+        <button class="button" id="applyFiltersButton">Apply Filters</button>
+    </div>
 
     <!-- Spotify Login -->
     <button class="button" onclick="loginWithSpotify()">Login with Spotify</button>
@@ -39,22 +42,6 @@
     <!-- Song List -->
     <h3 style="color:#FFEB3B; margin-top:16px;">Song List</h3>
     <div id="songList"></div>
-<!-- Toggle Filters Button -->
-<button class="button" onclick="toggleFilters()">Toggle Filters</button>
-
-<!-- Tempo Filter Panel -->
-<div id="filterPanel" style="display:none; margin-top:12px;">
-    <label>Min Tempo: <input type="number" id="minTempo" value="0" style="width:80px;"></label>
-    <label>Max Tempo: <input type="number" id="maxTempo" value="999" style="width:80px;"></label>
-    <button class="button" id="applyFiltersButton">Apply Filters</button>
-</div>
-
-<script>
-    function toggleFilters() {
-        const panel = document.getElementById("filterPanel");
-        panel.style.display = (panel.style.display === "none") ? "block" : "none";
-    }
-</script>
 
     <!-- Bottom Nav -->
     <div class="bottom-nav">
@@ -63,6 +50,14 @@
         <a href="settings.html">Settings</a>
     </div>
 
+    <script>
+        function toggleFilters() {
+            const panel = document.getElementById("filterPanel");
+            panel.style.display = (panel.style.display === "none") ? "block" : "none";
+        }
+    </script>
+
     <script src="main.js"></script>
 </body>
 </html>
+
