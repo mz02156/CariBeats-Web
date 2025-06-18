@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>CariBeats - Home</title><link rel="stylesheet" href="styles.css" /></head>
+<title>CariBeats - Home</title>
+<link rel="stylesheet" href="styles.css" />
+<script src="https://sdk.scdn.co/spotify-player.js"></script>
+</head>
 <body>
 <div class="app-title">CariBeats</div>
 <div class="app-description">
@@ -9,8 +12,11 @@ CariBeats is a music app that streams Caribbean genres like soca, dancehall, reg
 </div>
 <button class="button button-local" onclick="location.href='genre_selection.html'">Use Local Dataset</button>
 <button class="button button-stats" onclick="location.href='stats.html'">View Mood & Genre Stats</button>
+<button class="button" onclick="loginWithSpotify()">Login with Spotify</button>
 <div class="bottom-nav">
 <a href="index.html">Home</a>
 <a href="playlist.html">Playlist</a>
 <a href="settings.html">Settings</a>
-</div><script src="main.js"></script></body></html>
+</div>
+<script src="main.js"></script>
+</body></html>
