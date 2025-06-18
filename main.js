@@ -30,6 +30,10 @@ function displaySongs(songList) {
     });
 }
 
+function normalizeGenre(genre) {
+    return genre.toLowerCase().replace(/[-\s]/g, '');
+}
+
 function applyFilters(songs) {
     const selectedGenre = document.getElementById("genreDropdown").value;
     const minTempo = parseFloat(document.getElementById("minTempo").value) || 0;
@@ -74,7 +78,7 @@ function applyFilters(songs) {
     const timeSignatureFilter = parseInt(document.getElementById("timeSignatureFilter").value);
 
     return songs.filter(song => {
-        const matchesGenre = selectedGenre === "All" || song.genre.toLowerCase() === selectedGenre.toLowerCase();
+        const matchesGenre = selectedGenre === "All" || normalizeGenre(song.genre) === normalizeGenre(selectedGenre);
         const matchesTempo = song.tempo >= minTempo && song.tempo <= maxTempo;
         const matchesPopularity = song.popularity >= minPopularity && song.popularity <= maxPopularity;
         const matchesDuration = song.duration_ms >= minDuration && song.duration_ms <= maxDuration;
@@ -126,3 +130,4 @@ function loginWithSpotify() {
     const auth_url = `https://accounts.spotify.com/authorize?client_id=${client_id}&response_type=token&redirect_uri=${encodeURIComponent(redirect_uri)}&scope=${encodeURIComponent(scope)}`;
     window.location.href = auth_url;
 }
+
