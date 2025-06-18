@@ -10,6 +10,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         filteredSongs = applyFilters(songs);
         displaySongs(filteredSongs);
     });
+
+    // 🚀 Genre dropdown listener
+    document.getElementById("genreDropdown").addEventListener("change", () => {
+        filteredSongs = applyFilters(songs);
+        displaySongs(filteredSongs);
+    });
 });
 
 function displaySongs(songList) {
