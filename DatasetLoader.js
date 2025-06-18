@@ -1,8 +1,7 @@
-
 class DatasetLoader {
     static async loadSongs() {
         try {
-            const response = await fetch('songs.json');
+            const response = await fetch('song.json');  // ✅ Correct filename
             const data = await response.json();
 
             console.log(`Loaded ${data.length} songs from local dataset.`);
@@ -34,3 +33,4 @@ class DatasetLoader {
         }
     }
 }
+
