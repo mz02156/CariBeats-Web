@@ -1,18 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>CariBeats - Genre Selection</title><link rel="stylesheet" href="styles.css" />
-<script src="https://sdk.scdn.co/spotify-player.js"></script></head>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CariBeats - Genre Selection</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+</head>
 <body>
-<h2 style="color: #FFEB3B;">Select Genre</h2>
-<select id="genreSpinner" style="width:100%; padding:12px; margin-bottom:12px;">
-<option>Soca</option><option>Dancehall</option><option>Reggae</option>
-<option>Konpa</option><option>Reggaeton</option><option>Hiphop</option><option>Pop</option>
-</select>
-<input type="text" id="searchBar" placeholder="Search songs..." style="width:100%; padding:12px; margin-bottom:12px; background-color:#545353; color:white;" />
-<button class="button" onclick="alert('Toggle Filters')">Toggle Filters</button>
-<button class="button" onclick="loginWithSpotify()">Login with Spotify</button>
-<h3 style="color:#FFEB3B; margin-top:16px;">Song List</h3>
-<div id="songList"></div>
-<div class="bottom-nav"><a href="index.html">Home</a><a href="playlist.html">Playlist</a><a href="settings.html">Settings</a></div>
-<script src="main.js"></script></body></html>
+    <h2 style="color: #FFEB3B;">Select Genre</h2>
+
+    <!-- Genre Dropdown -->
+    <select id="genreDropdown" style="width:100%; padding:12px; margin-bottom:12px;">
+        <option>All</option>
+        <option>Soca</option>
+        <option>Dancehall</option>
+        <option>Reggae</option>
+        <option>Konpa</option>
+        <option>Reggaeton</option>
+        <option>Hip-hop</option>
+        <option>Pop</option>
+        <option>Afrobeat</option>
+    </select>
+
+    <!-- Search Bar -->
+    <input type="text" id="searchBar" placeholder="Search songs..." style="width:100%; padding:12px; margin-bottom:12px; background-color:#545353; color:white;" />
+
+    <!-- Tempo Filters -->
+    <label>Min Tempo: <input type="number" id="minTempo" value="0" style="width:80px;"></label>
+    <label>Max Tempo: <input type="number" id="maxTempo" value="999" style="width:80px;"></label>
+
+    <!-- Apply Filters Button -->
+    <button class="button" id="applyFiltersButton">Apply Filters</button>
+
+    <!-- Spotify Login -->
+    <button class="button" onclick="loginWithSpotify()">Login with Spotify</button>
+
+    <!-- Song List -->
+    <h3 style="color:#FFEB3B; margin-top:16px;">Song List</h3>
+    <div id="songList"></div>
+
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+        <a href="index.html">Home</a>
+        <a href="playlist.html">Playlist</a>
+        <a href="settings.html">Settings</a>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
