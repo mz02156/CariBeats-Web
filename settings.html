@@ -1,9 +1,36 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>CariBeats - Settings</title><link rel="stylesheet" href="styles.css" /></head>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CariBeats - Settings</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
 <body>
-<h2 style="color:white;">Toggle App Theme</h2>
-<label style="color:#FFEB3B;"><input type="checkbox" id="themeSwitch" onchange="toggleTheme()" /> Dark Mode</label>
-<div class="bottom-nav"><a href="index.html">Home</a><a href="playlist.html">Playlist</a><a href="settings.html">Settings</a></div>
-<script src="main.js"></script></body></html>
+    <h2 style="color:#FFEB3B;">Settings</h2>
+
+    <button class="button" onclick="chooseSpotify()">Use Spotify API</button>
+    <button class="button" onclick="chooseLocal()">Use Local Dataset</button>
+
+    <p id="currentMode" style="color:white; margin-top:16px;">Current Mode: Unknown</p>
+
+    <div class="bottom-nav">
+        <a href="index.html">Home</a>
+        <a href="playlist.html">Playlist</a>
+        <a href="settings.html">Settings</a>
+    </div>
+
+    <script>
+        function chooseSpotify() {
+            localStorage.setItem('data_mode', 'spotify');
+            document.getElementById('currentMode').innerText = 'Current Mode: Spotify API';
+        }
+
+        function chooseLocal() {
+            localStorage.setItem('data_mode', 'local');
+            document.getElementById('currentMode').innerText = 'Current Mode: Local Dataset';
+        }
+    </script>
+</body>
+</html>

@@ -1,4 +1,41 @@
-console.log("CariBeats website loaded.");
+
+document.addEventListener("DOMContentLoaded", async () => {
+    console.log("CariBeats website loaded.");
+
+    const songs = await DatasetLoader.loadSongs();
+    let filteredSongs = [...songs];
+
+    displaySongs(filteredSongs);
+
+    document.getElementById("applyFiltersButton").addEventListener("click", () => {
+        filteredSongs = applyFilters(songs);
+        displaySongs(filteredSongs);
+    });
+});
+
+function displaySongs(songList) {
+    const container = document.getElementById("songList");
+    container.innerHTML = '';
+
+    songList.forEach(song => {
+        const div = document.createElement("div");
+        div.className = "song-item";
+        div.textContent = `${song.title} - ${song.artists} (${song.genre}) [${song.tempo} BPM]`;
+        container.appendChild(div);
+    });
+}
+
+function applyFilters(songs) {
+    const selectedGenre = document.getElementById("genreDropdown").value;
+    const minTempo = parseFloat(document.getElementById("minTempo").value) || 0;
+    const maxTempo = parseFloat(document.getElementById("maxTempo").value) || 999;
+
+    return songs.filter(song => {
+        const matchesGenre = selectedGenre === "All" || song.genre.toLowerCase() === selectedGenre.toLowerCase();
+        const matchesTempo = song.tempo >= minTempo && song.tempo <= maxTempo;
+        return matchesGenre && matchesTempo;
+    });
+}
 
 function loginWithSpotify() {
     const client_id = 'f7875920cd894ddf93b4bbc32bb2fb8a';
@@ -8,38 +45,3 @@ function loginWithSpotify() {
     const auth_url = `https://accounts.spotify.com/authorize?client_id=${client_id}&response_type=token&redirect_uri=${encodeURIComponent(redirect_uri)}&scope=${encodeURIComponent(scope)}`;
     window.location.href = auth_url;
 }
-
-function getAccessTokenFromUrl() {
-    const hash = window.location.hash.substring(1);
-    const params = new URLSearchParams(hash);
-    return params.get('access_token');
-}
-
-const token = getAccessTokenFromUrl();
-if (token) {
-    console.log("Spotify Token: ", token);
-    localStorage.setItem("spotify_access_token", token);
-}
-
-window.onSpotifyWebPlaybackSDKReady = () => {
-    const token = localStorage.getItem("spotify_access_token");
-    const player = new Spotify.Player({
-        name: 'CariBeats Web Player',
-        getOAuthToken: cb => { cb(token); },
-        volume: 0.8
-    });
-
-    player.addListener('initialization_error', ({ message }) => { console.error(message); });
-    player.addListener('authentication_error', ({ message }) => { console.error(message); });
-    player.addListener('account_error', ({ message }) => { console.error(message); });
-    player.addListener('playback_error', ({ message }) => { console.error(message); });
-
-    player.addListener('player_state_changed', state => { console.log(state); });
-
-    player.addListener('ready', ({ device_id }) => {
-        console.log('Ready with Device ID', device_id);
-        localStorage.setItem("spotify_device_id", device_id);
-    });
-
-    player.connect();
-};

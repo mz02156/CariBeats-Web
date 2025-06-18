@@ -6,13 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CariBeats - Player</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
 </head>
 <body>
     <h2 style="color:#FFEB3B;">Spotify Player</h2>
     <p id="status" style="color:white;">Loading player...</p>
+
     <button class="button" onclick="playTestTrack()">Play Test Track</button>
 
-    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <div class="bottom-nav">
+        <a href="index.html">Home</a>
+        <a href="playlist.html">Playlist</a>
+        <a href="settings.html">Settings</a>
+    </div>
+
     <script>
         window.onSpotifyWebPlaybackSDKReady = () => {
             const token = localStorage.getItem('spotify_access_token');
@@ -38,8 +45,6 @@
             player.addListener('ready', ({ device_id }) => {
                 console.log('Ready with Device ID', device_id);
                 document.getElementById('status').innerText = 'Player is ready! You can now play music.';
-
-                // Save device_id for playback
                 window.spotifyDeviceId = device_id;
             });
 
@@ -54,8 +59,7 @@
                 return;
             }
 
-            // Example track URI (replace with your own)
-            const track_uri = 'spotify:track:6rqhFgbbKwnb9MLmUQDhG6'; // Example: Daft Punk - Harder Better Faster Stronger
+            const track_uri = 'spotify:track:6rqhFgbbKwnb9MLmUQDhG6';
 
             fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`, {
                 method: 'PUT',
