@@ -1,1 +1,0 @@
-class StaticSongStore { static songs = []; static setSongs(songList) { this.songs = songList; } static getSongs() { return this.songs; } }

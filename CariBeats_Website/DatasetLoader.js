@@ -1,1 +1,0 @@
-class DatasetLoader { static async loadSongs() { const response = await fetch('songs.json'); const data = await response.json(); return data.map(item => new Song(item.title, item.artists, item.genre, item.tempo, item.mood)); } }
