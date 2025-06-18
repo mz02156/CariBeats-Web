@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CariBeats - Player</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <h2 style="color:#FFEB3B;">Spotify Player</h2>
+    <p id="status" style="color:white;">Loading player...</p>
+    <button class="button" onclick="playTestTrack()">Play Test Track</button>
+
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script>
+        window.onSpotifyWebPlaybackSDKReady = () => {
+            const token = localStorage.getItem('spotify_access_token');
+
+            const player = new Spotify.Player({
+                name: 'CariBeats Web Player',
+                getOAuthToken: cb => { cb(token); },
+                volume: 0.8
+            });
+
+            player.addListener('initialization_error', ({ message }) => { console.error(message); });
+            player.addListener('authentication_error', ({ message }) => { console.error(message); });
+            player.addListener('account_error', ({ message }) => { console.error(message); });
+            player.addListener('playback_error', ({ message }) => { console.error(message); });
+
+            player.addListener('player_state_changed', state => {
+                console.log(state);
+                if (state) {
+                    document.getElementById('status').innerText = `Now Playing: ${state.track_window.current_track.name} by ${state.track_window.current_track.artists[0].name}`;
+                }
+            });
+
+            player.addListener('ready', ({ device_id }) => {
+                console.log('Ready with Device ID', device_id);
+                document.getElementById('status').innerText = 'Player is ready! You can now play music.';
+
+                // Save device_id for playback
+                window.spotifyDeviceId = device_id;
+            });
+
+            player.connect();
+        };
+
+        function playTestTrack() {
+            const token = localStorage.getItem('spotify_access_token');
+            const device_id = window.spotifyDeviceId;
+            if (!device_id) {
+                alert('Player not ready yet!');
+                return;
+            }
+
+            // Example track URI (replace with your own)
+            const track_uri = 'spotify:track:6rqhFgbbKwnb9MLmUQDhG6'; // Example: Daft Punk - Harder Better Faster Stronger
+
+            fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`, {
+                method: 'PUT',
+                body: JSON.stringify({ uris: [track_uri] }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                }
+            })
+            .then(response => {
+                if (response.status === 204) {
+                    console.log('Playback started!');
+                } else {
+                    console.error('Error starting playback:', response);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
